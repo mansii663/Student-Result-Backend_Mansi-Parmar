@@ -2,12 +2,10 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 
-/* 🔹 Test Route */
 router.get("/test", (req, res) => {
-  res.json({ message: "Result routes working ✅" });
+  res.json({ message: "Result routes working " });
 });
 
-/* 🔹 Get Student Result */
 router.post("/result", async (req, res) => {
   const { student_id, student_name, dob } = req.body;
 
@@ -48,7 +46,7 @@ router.post("/result", async (req, res) => {
     res.json({
       student_id: student.stud_id,
       student_name: student.stud_name,
-      dob: student.dob, // keep as DB date
+      dob: student.dob,
       marks: {
         maths: student.maths,
         science: student.science,
@@ -64,7 +62,6 @@ router.post("/result", async (req, res) => {
   }
 });
 
-/* 🔹 Add Student (NEW API) */
 router.post("/add-student", async (req, res) => {
   const { stud_id, stud_name, dob, maths, english, science } = req.body;
 
@@ -79,7 +76,7 @@ router.post("/add-student", async (req, res) => {
       [stud_id, stud_name, dob, maths, english, science]
     );
 
-    res.status(201).json({ message: "Student added successfully ✅" });
+    res.status(201).json({ message: "Student added successfully " });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error adding student" });
